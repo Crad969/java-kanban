@@ -1,12 +1,11 @@
-package Service;
+package service;
 
-import Modul.Epic;
-import Modul.Status;
-import Modul.Subtask;
-import Modul.Task;
-import Service.TaskManager;
+import modul.Epic;
+import modul.Status;
+import modul.Subtask;
+import modul.Task;
 
- public class Main {
+public class Main {
     public static void main(String[] args) {
         TaskManager manager = new TaskManager();
 
@@ -41,10 +40,6 @@ import Service.TaskManager;
         subtask1.setStatus(Status.DONE);
         manager.updateSubtask(subtask1);
 
-
-        // Удаление задачи и эпика
-        manager.removeTaskById(task2.getId());
-        manager.removeEpicById(epic1.getId());
 
 
     }

@@ -1,4 +1,4 @@
-package Modul;
+package modul;
 
 public class Subtask extends Task {
     private int epicId;

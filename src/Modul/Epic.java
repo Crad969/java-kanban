@@ -1,66 +1,26 @@
-package Modul;
+package modul;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
-    private List<Subtask> subtasks = new ArrayList<>();
+    private final List<Integer> subtaskIds = new ArrayList<>();
 
     public Epic(String title, String description, Status status) {
-        super(title, description, Status.NEW);
+        super(title, description, status);
     }
 
-    public List<Subtask> getSubtasks() {
-        return subtasks;
-    }
-
-    public void addSubtask(Subtask subtask) {
-        subtasks.add(subtask);
-    }
-
-    public void removeSubtask(Subtask subtask) {
-        subtasks.remove(subtask);
-    }
-
-    public void updateStatus() {
-        boolean hasInProgress = false;
-        boolean hasDone = false;
-        boolean hasNew = false;
-
-        for (Subtask subtask : subtasks) {
-            switch (subtask.getStatus()) {
-                case Status.DONE:
-                    hasDone = true;
-                    break;
-                case Status.IN_PROGRESS:
-                    hasInProgress = true;
-                    break;
-                case Status.NEW:
-                    hasNew = true;
-                    break;
-            }
-            if (hasInProgress) {
-                setStatus(Status.IN_PROGRESS);
-                return;
-            }
-        }
-
-        if (hasDone && !hasNew && !hasInProgress) {
-            setStatus(Status.DONE);
-        } else if (hasNew && !hasInProgress && !hasDone) {
-            setStatus(Status.NEW);
-        } else {
-            setStatus(Status.IN_PROGRESS);
-        }
+    public List<Integer> getSubtaskIds() {
+        return subtaskIds;
     }
 
     @Override
     public String toString() {
-        return "Modul.Epic{" +
+        return "Epic{" +
                 "id=" + getId() +
                 ", title='" + getTitle() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", status=" + getStatus() +
-                ", subtasks=" + subtasks + '}';
+                ", subtaskIds=" + subtaskIds + '}';
     }
 }

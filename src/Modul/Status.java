@@ -1,4 +1,4 @@
-package Modul;
+package modul;
 
 public enum Status {
     NEW,
