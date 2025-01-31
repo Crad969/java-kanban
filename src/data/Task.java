@@ -1,5 +1,4 @@
-package modul;
-
+package data;
 import java.util.Objects;
 
 public class Task {

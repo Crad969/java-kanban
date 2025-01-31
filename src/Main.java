@@ -1,13 +1,13 @@
-package service;
-
-import modul.Epic;
-import modul.Status;
-import modul.Subtask;
-import modul.Task;
+import data.Epic;
+import data.Status;
+import data.Subtask;
+import data.Task;
+import manager.InMemoryTaskManager;
+import manager.TaskManager;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager manager = new TaskManager();
+        TaskManager manager = new InMemoryTaskManager(); // Используем конкретную реализацию
 
         // Создание задач
         Task task1 = new Task("Задача 1", "Описание 1", Status.NEW);
@@ -29,7 +29,7 @@ public class Main {
         manager.addSubtask(subtask2);
         manager.addSubtask(subtask3);
 
-        // Печать всех задач, эпиков , и подзадач
+        // Печать всех задач, эпиков и подзадач
         System.out.println("Задачи: " + manager.getAllTasks());
         System.out.println("Эпики: " + manager.getAllEpics());
         System.out.println("Подзадачи: " + manager.getAllSubtasks());
@@ -40,8 +40,11 @@ public class Main {
         subtask1.setStatus(Status.DONE);
         manager.updateSubtask(subtask1);
 
+        // Проверка обновления эпика (эпик должен обновить статус)
+        Epic updatedEpic1 = manager.getEpic(epic1.getId());
+        System.out.println("Обновленный эпик 1: " + updatedEpic1);
 
-
+        // Вывод истории просмотров
+        System.out.println("История просмотров: " + manager.getHistory());
     }
 }
-
